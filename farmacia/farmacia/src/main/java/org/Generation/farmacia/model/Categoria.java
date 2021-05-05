@@ -32,7 +32,7 @@ public class Categoria {
 	private boolean prontossocorros=false;
 
 	@OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL)
-	@JsonIgnoreProperties("tema")
+	@JsonIgnoreProperties("categoria")
 	private List<Produto> produto;
 	
 	
