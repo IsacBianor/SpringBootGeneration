@@ -1,5 +1,59 @@
 package org.Generation.LojaGames.Controller;
 
-public class CategoriaController {
+import java.util.List;
 
+import org.Generation.LojaGames.Repository.CategoriaRepository;
+import org.Generation.LojaGames.model.Categoria;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController @RequestMapping("/categoria")
+@CrossOrigin (origins = "*", allowedHeaders = "*")
+public class CategoriaController {
+	
+	@Autowired
+	public CategoriaRepository repository;
+	
+	@GetMapping
+	public ResponseEntity <List<Categoria>> getAll()
+	{
+		return ResponseEntity.ok(repository.findAll());
+	}
+	
+	@GetMapping ("/{id}")
+	public ResponseEntity <Categoria> getById (@PathVariable Long id)
+	{
+		return repository.findById(id).map(resp -> ResponseEntity.ok(resp)).orElse(ResponseEntity.notFound().build());
+	}
+	
+	@GetMapping("/jogo")
+	public ResponseEntity<List<Categoria>> getByJogo()
+	{
+		return ResponseEntity.ok(repository.findByJogoTrue());
+	}
+	
+	@GetMapping("/figureaction")
+	public ResponseEntity<List<Categoria>> getByFigureaction()
+	{
+		return ResponseEntity.ok(repository.findByFigureactionTrue());
+	}
+
+	@GetMapping("/console")
+	public ResponseEntity<List<Categoria>> getByConsole()
+	{
+		return ResponseEntity.ok(repository.findByConsoleTrue());
+	}
+	
+	@GetMapping("/dispositivos")
+	public ResponseEntity<List<Categoria>> getByDispositivos()
+	{
+		return ResponseEntity.ok(repository.findByDispositivosTrue());
+	}
+
+	
 }

@@ -21,7 +21,7 @@ public class Categoria {
 	
 	private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Long id;
 	
-	private @NotNull boolean game;
+	private @NotNull boolean jogo;
 	
 	private @NotNull boolean figureaction;
 	
@@ -44,12 +44,12 @@ public class Categoria {
 		this.id = id;
 	}
 
-	public boolean isGame() {
-		return game;
+	public boolean isJogo() {
+		return jogo;
 	}
 
-	public void setGame(boolean game) {
-		this.game = game;
+	public void setJogo(boolean jogo) {
+		this.jogo = jogo;
 	}
 
 	public boolean isFigureaction() {
